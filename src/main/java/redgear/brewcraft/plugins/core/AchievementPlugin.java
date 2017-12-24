@@ -48,7 +48,7 @@ public class AchievementPlugin implements IPlugin {
 
 	@Override
 	public void Init(ModUtils mod) {
-		if (Brewcraft.inst.getBoolean("General", "Toggle Achievements", true)) {
+		if (Brewcraft.configuration.get("General", "Toggle Achievements", true).getBoolean()) {
 			craftBrewery = new Achievement("CraftBrewery", "brewcraft.brewery", 0, 0, MachinePlugin.brewery.getStack(),
 					null).registerStat().setSpecial();
 			explode = new Achievement("PotionExplode", "brewcraft.explode", 1, 3, Items.gunpowder, craftBrewery)

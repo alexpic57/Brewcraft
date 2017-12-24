@@ -34,15 +34,15 @@ public class DropHandler {
 	private DropHandler() {
 		final String drops = "drops";
 		
-		charredBoneDropRate		= Brewcraft.inst.getInt(drops, "charredBoneDropRate", 	 20);
-		heartDropRate 			= Brewcraft.inst.getInt(drops, "heartDropRate", 		200);
-		tearDropRate 			= Brewcraft.inst.getInt(drops, "tearDropRate", 			 10);
-		goldenFeatherDropRate 	= Brewcraft.inst.getInt(drops, "goldenFeatherDropRate",  20);
-		tiredSporesDropRate 	= Brewcraft.inst.getInt(drops, "tiredSporesDropRate", 	 20);
-		remedySalveDropRate 	= Brewcraft.inst.getInt(drops, "remedySalveDropRate", 	 50);
-		spiderFangDropRate 		= Brewcraft.inst.getInt(drops, "spiderFangDropRate", 	 25);
-		steelScalesDropRate 	= Brewcraft.inst.getInt(drops, "steelScalesDropRate", 	 10);
-		heartBlazeDropRate 		= Brewcraft.inst.getInt(drops, "heartBlazeDropRate", 	 20);
+		charredBoneDropRate		= Brewcraft.configuration.get(drops, "charredBoneDropRate", 	 20).getInt();
+		heartDropRate 			= Brewcraft.configuration.get(drops, "heartDropRate", 		200).getInt();
+		tearDropRate 			= Brewcraft.configuration.get(drops, "tearDropRate", 			 10).getInt();
+		goldenFeatherDropRate 	= Brewcraft.configuration.get(drops, "goldenFeatherDropRate",  20).getInt();
+		tiredSporesDropRate 	= Brewcraft.configuration.get(drops, "tiredSporesDropRate", 	 20).getInt();
+		remedySalveDropRate 	= Brewcraft.configuration.get(drops, "remedySalveDropRate", 	 50).getInt();
+		spiderFangDropRate 		= Brewcraft.configuration.get(drops, "spiderFangDropRate", 	 25).getInt();
+		steelScalesDropRate 	= Brewcraft.configuration.get(drops, "steelScalesDropRate", 	 10).getInt();
+		heartBlazeDropRate 		= Brewcraft.configuration.get(drops, "heartBlazeDropRate", 	 20).getInt();
 	}
 
 	public static DropHandler register() {

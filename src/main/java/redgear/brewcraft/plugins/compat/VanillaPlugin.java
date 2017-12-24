@@ -32,7 +32,7 @@ public class VanillaPlugin implements IPlugin {
 
 	@Override
 	public void Init(ModUtils mod) {
-		if (Brewcraft.inst.getBoolean("General", "Golden Feather Dungeon Loot", true))
+		if (Brewcraft.configuration.get("General", "Golden Feather Dungeon Loot", true).getBoolean())
 			CoreDungeonLoot.addLootToDungeons(ItemPlugin.goldenFeather.getStack(), LootRarity.RARE);
 	}
 

@@ -157,7 +157,7 @@ public class ComponentWitchHut extends StructureVillagePieces.House1 {
 
 	@Override
 	protected int getVillagerType(int par1) {
-		return this.hasWitch ? Brewcraft.inst.getInt("General", "Witch Profession ID", 15) : Brewcraft.inst.getInt(
-				"General", "Warlock Profession ID", 16);
+		return this.hasWitch ? Brewcraft.configuration.get("General", "Witch Profession ID", 15).getInt() : Brewcraft.configuration.get(
+				"General", "Warlock Profession ID", 16).getInt();
 	}
 }

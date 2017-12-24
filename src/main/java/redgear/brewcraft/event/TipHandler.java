@@ -29,10 +29,10 @@ public class TipHandler {
 		return instance;
 	}
 
-	boolean flag = Brewcraft.inst.getBoolean("General",
-			"Add tooltips to fluid containers to categorize the contained fluids.", false);
-	boolean flag2 = Brewcraft.inst
-			.getBoolean("General", "Add tooltips to fluid containers to display capacity.", false);
+	boolean flag = Brewcraft.configuration.get("General",
+			"Add tooltips to fluid containers to categorize the contained fluids.", false).getBoolean();
+	boolean flag2 = Brewcraft.configuration
+			.get("General", "Add tooltips to fluid containers to display capacity.", false).getBoolean();
 
 	@SubscribeEvent
 	public void onTooltip(ItemTooltipEvent event) {

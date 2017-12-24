@@ -10,10 +10,10 @@ import net.minecraft.potion.Potion;
 public class PotionArrayExpander {
 
 	public static void init() {
-		int targetSize = Brewcraft.inst.getInt("Potion List Expansion", "Potion List Extension Size",
-				"Will only do something if expanding the potion list is set to true.", 64);
-		boolean enabled = Brewcraft.inst.getBoolean("Potion List Expansion", "Toggle Potion List Extension",
-				"Disable if another installed mod does this.", true);
+		int targetSize = Brewcraft.configuration.get("Potion List Expansion", "Potion List Extension Size",
+				64, "Will only do something if expanding the potion list is set to true.").getInt();
+		boolean enabled = Brewcraft.configuration.get("Potion List Expansion", "Toggle Potion List Extension",
+				true, "Disable if another installed mod does this.").getBoolean();
 
 		if (enabled)
 			if (Potion.potionTypes.length < targetSize)

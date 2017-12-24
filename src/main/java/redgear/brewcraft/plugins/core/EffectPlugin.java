@@ -53,33 +53,33 @@ public class EffectPlugin implements IPlugin {
 	@Override
 	public void Init(ModUtils mod) {
 
-		angel = new EffectAngel(Brewcraft.inst.getInt("Potion Effect IDs", "'Angelic' Effect ID",
-				"Must be over 20. Must also be lowered if you have disabled the potion list expansion.", 40));
+		angel = new EffectAngel(Brewcraft.configuration.get("Potion Effect IDs", "'Angelic' Effect ID",
+				40, "Must be over 20. Must also be lowered if you have disabled the potion list expansion.").getInt());
 
-		flight = new EffectFlight(Brewcraft.inst.getInt("Potion Effect IDs", "'Flight' Effect ID", 41));
+		flight = new EffectFlight(Brewcraft.configuration.get("Potion Effect IDs", "'Flight' Effect ID", 41).getInt());
 
-		creeper = new EffectCreeper(Brewcraft.inst.getInt("Potion Effect IDs", "'Combustion' Effect ID", 42));
+		creeper = new EffectCreeper(Brewcraft.configuration.get("Potion Effect IDs", "'Combustion' Effect ID", 42).getInt());
 		
-		immunity = new EffectImmunity(Brewcraft.inst.getInt("Potion Effect IDs", "'Immunity' Effect ID", 43));
+		immunity = new EffectImmunity(Brewcraft.configuration.get("Potion Effect IDs", "'Immunity' Effect ID", 43).getInt());
 
-		frozen = new EffectFrozen(Brewcraft.inst.getInt("Potion Effect IDs", "'Frozen' Effect ID", 44))
+		frozen = new EffectFrozen(Brewcraft.configuration.get("Potion Effect IDs", "'Frozen' Effect ID", 44).getInt())
 				.func_111184_a(SharedMonsterAttributes.movementSpeed, "7107DE5E-7CE8-4030-940E-514C1F160891",
 						-0.95000000596046448D, 2);
 
-		fireproof = new EffectFireproof(Brewcraft.inst.getInt("Potion Effect IDs", "'Fireproof' Effect ID", 45));
+		fireproof = new EffectFireproof(Brewcraft.configuration.get("Potion Effect IDs", "'Fireproof' Effect ID", 45).getInt());
 
-		flame = new EffectEternalFlame(Brewcraft.inst.getInt("Potion Effect IDs", "'Eternal Flame' Effect ID", 46));
+		flame = new EffectEternalFlame(Brewcraft.configuration.get("Potion Effect IDs", "'Eternal Flame' Effect ID", 46).getInt());
 
-		fireEater = new EffectFireEater(Brewcraft.inst.getInt("Potion Effect IDs", "'Fire Eater' Effect ID", 47));
+		fireEater = new EffectFireEater(Brewcraft.configuration.get("Potion Effect IDs", "'Fire Eater' Effect ID", 47).getInt());
 
-		poison = new EffectVanillaThree("poison", Brewcraft.inst.getInt("Potion Effect IDs", "'Poison' Effect ID", 48),
+		poison = new EffectVanillaThree("poison", Brewcraft.configuration.get("Potion Effect IDs", "'Poison' Effect ID", 48).getInt(),
 				true, 5149489);
 
-		wither = new EffectVanillaThree("wither", Brewcraft.inst.getInt("Potion Effect IDs", "'Wither' Effect ID", 49),
+		wither = new EffectVanillaThree("wither", Brewcraft.configuration.get("Potion Effect IDs", "'Wither' Effect ID", 49).getInt(),
 				true, 3484199);
 
-		regeneration = new EffectVanillaThree("regeneration", Brewcraft.inst.getInt("Potion Effect IDs",
-				"'Regeneration' Effect ID", 50), false, 13458603);
+		regeneration = new EffectVanillaThree("regeneration", Brewcraft.configuration.get("Potion Effect IDs",
+				"'Regeneration' Effect ID", 50).getInt(), false, 13458603);
 
 	}
 

@@ -31,7 +31,7 @@ public class TradeHandler implements IVillageTradeHandler {
 		return instance;
 	}
 
-	public boolean powderTrade = Brewcraft.inst.getBoolean("General", "Blessed Powder Priest Trade", true);
+	public boolean powderTrade = Brewcraft.configuration.get("General", "Blessed Powder Priest Trade", true).getBoolean();
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -56,7 +56,7 @@ public class TradeHandler implements IVillageTradeHandler {
 					ItemPlugin.heartSmall.getStack(random.nextInt(3) + 1)));
 		}
 
-		if (villager.getProfession() == Brewcraft.inst.getInt("General", "Witch Profession ID", 15)) {
+		if (villager.getProfession() == Brewcraft.configuration.get("General", "Witch Profession ID", 15).getInt()) {
 
 			//All base level potions.
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, random.nextInt(5) + 3),
@@ -145,7 +145,7 @@ public class TradeHandler implements IVillageTradeHandler {
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, random.nextInt(5) + 4),
 					new ItemStack(Items.potionitem, 1, 16430)));
 		}
-		if (villager.getProfession() == Brewcraft.inst.getInt("General", "Warlock Profession ID", 16)) {
+		if (villager.getProfession() == Brewcraft.configuration.get("General", "Warlock Profession ID", 16).getInt()) {
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, random.nextInt(4) + 1),
 					new ItemStack(Items.spider_eye, random.nextInt(2) + 1)));
 			recipeList.add(new MerchantRecipe(new ItemStack(Items.emerald, random.nextInt(3) + 2),

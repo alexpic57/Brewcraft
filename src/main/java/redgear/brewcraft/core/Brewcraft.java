@@ -2,6 +2,10 @@ package redgear.brewcraft.core;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import redgear.brewcraft.client.BrewcraftClientProxy;
 import redgear.brewcraft.entity.EntityBrewcraftPotion;
 import redgear.brewcraft.event.CraftingHandler;
@@ -45,6 +49,18 @@ public class Brewcraft extends ModUtils {
 	public static CreativeTabs tabPotions;
 	public static CreativeTabs tabVials;
 	public static CreativeTabs tabBig;
+
+	public static Configuration configuration;
+
+	@Mod.EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		configuration = new Configuration(event.getSuggestedConfigurationFile());
+	}
+
+	@Mod.EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
+		configuration.save();
+	}
 
 	@Override
 	protected void PreInit(FMLPreInitializationEvent event) {

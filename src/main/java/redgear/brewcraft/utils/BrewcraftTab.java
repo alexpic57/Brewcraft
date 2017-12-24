@@ -13,7 +13,7 @@ public class BrewcraftTab extends CreativeTabs {
 
 	public BrewcraftTab(String name) {
 		super("brewcraft." + name);
-		this.background = Brewcraft.inst.getBoolean("General", "Toggle Unconventional Creative Tab Overlays");
+		this.background = Brewcraft.configuration.get("General", "Toggle Unconventional Creative Tab Overlays", true).getBoolean();
 	}
 
 	@Override

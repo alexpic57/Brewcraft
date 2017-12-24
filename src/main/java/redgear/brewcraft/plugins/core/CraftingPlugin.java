@@ -38,75 +38,75 @@ public class CraftingPlugin implements IPlugin {
 
 	@Override
 	public void Init(ModUtils mod) {
-		if (Brewcraft.inst.getBoolean("Recipes", "Golden Feather Crafting Recipe", true))
+		if (Brewcraft.configuration.get("Recipes", "Golden Feather Crafting Recipe", true).getBoolean())
 			GameRegistry.addShapedRecipe(ItemPlugin.goldenFeather.getStack(), new Object[] {"!!!", "!@!", "!!!",
 					Character.valueOf('!'), Items.gold_nugget, Character.valueOf('@'), Items.feather });
 
-		if (Brewcraft.inst.getBoolean("Recipes", "Heart Medallion Crafting Recipe", true))
+		if (Brewcraft.configuration.get("Recipes", "Heart Medallion Crafting Recipe", true).getBoolean())
 			GameRegistry.addShapedRecipe(
 					ItemPlugin.heartGold.getStack(),
 					new Object[] {"!!!", "!@!", "!!!", Character.valueOf('!'), Items.gold_nugget,
 							Character.valueOf('@'), ItemPlugin.heartSmall.getItem() });
 
-		if (Brewcraft.inst.getBoolean("Recipes", "Tired Spores Crafting Recipe", true))
+		if (Brewcraft.configuration.get("Recipes", "Tired Spores Crafting Recipe", true).getBoolean())
 			GameRegistry.addShapelessRecipe(ItemPlugin.tiredSpores.getStack(3), new Object[] {Blocks.brown_mushroom,
 					Blocks.red_mushroom, Items.spider_eye });
 
-		if (Brewcraft.inst.getBoolean("Recipes", "Medicinal Salve Crafting Recipe", true))
+		if (Brewcraft.configuration.get("Recipes", "Medicinal Salve Crafting Recipe", true).getBoolean())
 			GameRegistry.addShapelessRecipe(ItemPlugin.remedySalve.getStack(3), new Object[] {Items.paper, Items.sugar,
 					Items.redstone });
 
-		if (Brewcraft.inst.getBoolean("Recipes", "Splash Bottle Crafting Recipe", true))
+		if (Brewcraft.configuration.get("Recipes", "Splash Bottle Crafting Recipe", true).getBoolean())
 			GameRegistry.addShapedRecipe(ItemPlugin.splashBottle.getStack(3), new Object[] {" @!", "@ @", " @ ",
 					Character.valueOf('!'), Items.gunpowder, Character.valueOf('@'), Blocks.glass });
 		
-		if (Brewcraft.inst.getBoolean("Recipes", "Large Bottle Crafting Recipe"))
+		if (Brewcraft.configuration.get("Recipes", "Large Bottle Crafting Recipe", true).getBoolean())
 			GameRegistry.addShapedRecipe(ItemPlugin.emptyBigBottle.getStack(3), new Object[] {"G G", "G G", "GGG", 'G', Blocks.glass});
 		
-		if (Brewcraft.inst.getBoolean("Recipes", "Large Splash Bottle Crafting Recipe"))
+		if (Brewcraft.configuration.get("Recipes", "Large Splash Bottle Crafting Recipe", true).getBoolean())
 			GameRegistry.addShapedRecipe(ItemPlugin.splashBigBottle.getStack(3), new Object[] {"G G", "G!G", "GGG", 'G', Blocks.glass, '!', Items.gunpowder});
 		
-		if (Brewcraft.inst.getBoolean("Recipes", "Vial Crafting Recipe"))
+		if (Brewcraft.configuration.get("Recipes", "Vial Crafting Recipe", true).getBoolean())
 			GameRegistry.addShapedRecipe(ItemPlugin.emptyVial.getStack(3), new Object[] {"G", "G", 'G', Blocks.glass});
 		
-		if (Brewcraft.inst.getBoolean("Recipes", "Splash Vial Crafting Recipe"))
+		if (Brewcraft.configuration.get("Recipes", "Splash Vial Crafting Recipe", true).getBoolean())
 			GameRegistry.addShapedRecipe(ItemPlugin.splashVial.getStack(3), new Object[] {"!", "G", "G", 'G', Blocks.glass, '!', Items.gunpowder});
 		
 
 		boolean ironOverride = false;
 
-		if (Brewcraft.inst.getBoolean("Recipes", "Lead Brewery", "Toggle crafting the Brewery with Lead if available"))
+		if (Brewcraft.configuration.get("Recipes", "Lead Brewery", "Toggle crafting the Brewery with Lead if available").getBoolean())
 			ironOverride = breweryRecipe("ingotLead");
 
-		if (Brewcraft.inst
-				.getBoolean("Recipes", "Brass Brewery", "Toggle crafting the Brewery with Brass if available"))
+		if (Brewcraft.configuration
+				.get("Recipes", "Brass Brewery", "Toggle crafting the Brewery with Brass if available").getBoolean())
 			ironOverride = ironOverride || breweryRecipe("ingotBrass");
 
-		if (!(ironOverride && !Brewcraft.inst.getBoolean("Recipes", "Iron Brewery",
-				"Toggle crafting the Brewery with Iron. (Can only be disabled if Lead or Brass is available)")))
+		if (!(ironOverride && !Brewcraft.configuration.get("Recipes", "Iron Brewery",
+				"Toggle crafting the Brewery with Iron. (Can only be disabled if Lead or Brass is available)").getBoolean()))
 			breweryRecipe("ingotIron"); //Dat boolean expression!
 
-		if (Brewcraft.inst.getBoolean("Recipes", "Metal Ring Crafting Recipe", true))
+		if (Brewcraft.configuration.get("Recipes", "Metal Ring Crafting Recipe", true).getBoolean())
 			GameRegistry.addShapedRecipe(ItemPlugin.metalRing.getStack(2),
 					new Object[] {" @ ", "@ @", " @ ", Character.valueOf('@'), Items.iron_ingot });
 
-		if (Brewcraft.inst.getBoolean("Recipes", "Sprayer Crafting Recipe", true))
+		if (Brewcraft.configuration.get("Recipes", "Sprayer Crafting Recipe", true).getBoolean())
 			GameRegistry.addShapedRecipe(MachinePlugin.sprayer.getStack(),
 					new Object[] {" @ ", "!#!", "!$!", Character.valueOf('@'), Blocks.dispenser,
 							Character.valueOf('!'), Blocks.cobblestone, Character.valueOf('#'), KegPlugin.kegs,
 							Character.valueOf('$'), Items.redstone });
 
-		if (Brewcraft.inst.getBoolean("Recipes", "Charred Bone Crafting Recipe", true))
+		if (Brewcraft.configuration.get("Recipes", "Charred Bone Crafting Recipe", true).getBoolean())
 			GameRegistry.addSmelting(Items.bone, ItemPlugin.charredBone.getStack(), 0.1F);
 
-		if (Brewcraft.inst.getBoolean("Recipes", "Steel Scales Smelting Recipe", true)) {
+		if (Brewcraft.configuration.get("Recipes", "Steel Scales Smelting Recipe", true).getBoolean()) {
 			GameRegistry.addSmelting(Items.chainmail_boots, ItemPlugin.steelScales.getStack(4), 0.1F);
 			GameRegistry.addSmelting(Items.chainmail_chestplate, ItemPlugin.steelScales.getStack(8), 0.3F);
 			GameRegistry.addSmelting(Items.chainmail_helmet, ItemPlugin.steelScales.getStack(5), 0.2F);
 			GameRegistry.addSmelting(Items.chainmail_leggings, ItemPlugin.steelScales.getStack(7), 0.3F);
 		}
 
-		if (Brewcraft.inst.getBoolean("Recipes", "Sealed Keg Crafting Recipe", true)) {
+		if (Brewcraft.configuration.get("Recipes", "Sealed Keg Crafting Recipe", true).getBoolean()) {
 			GameRegistry.addShapelessRecipe(KegPlugin.kegSealed.getStack(), new Object[] {KegPlugin.kegOak.getStack(),
 					Items.slime_ball });
 			GameRegistry.addShapelessRecipe(KegPlugin.kegSealed.getStack(), new Object[] {
@@ -121,7 +121,7 @@ public class CraftingPlugin implements IPlugin {
 					Items.slime_ball });
 		}
 
-		if (Brewcraft.inst.getBoolean("Recipes", "Plated Keg Crafting Recipe", true))
+		if (Brewcraft.configuration.get("Recipes", "Plated Keg Crafting Recipe", true).getBoolean())
 			GameRegistry.addShapelessRecipe(KegPlugin.kegPlated.getStack(), new Object[] {KegPlugin.kegIron.getStack(),
 					Items.slime_ball });
 
@@ -160,13 +160,13 @@ public class CraftingPlugin implements IPlugin {
 	}
 
 	private void addKegRecipe(ItemStack output, ItemStack material) {
-		if (Brewcraft.inst.getBoolean("Recipes", output.getDisplayName() + " Recipe", true))
+		if (Brewcraft.configuration.get("Recipes", output.getDisplayName() + " Recipe", true).getBoolean())
 			GameRegistry.addShapedRecipe(output, new Object[] {" ! ", " @ ", " ! ", Character.valueOf('!'),
 					ItemPlugin.metalRing.getStack(), Character.valueOf('@'), material });
 	}
 
 	private void addOreDictKegRecipe(ItemStack output, String material) {
-		if (Brewcraft.inst.getBoolean("Recipes", output.getDisplayName() + " Recipe", true))
+		if (Brewcraft.configuration.get("Recipes", output.getDisplayName() + " Recipe", true).getBoolean())
 			GameRegistry.addRecipe(new ShapedOreRecipe(output, new Object[] {" ! ", " @ ", " ! ",
 					Character.valueOf('!'), ItemPlugin.metalRing.getStack(), Character.valueOf('@'), material }));
 	}
