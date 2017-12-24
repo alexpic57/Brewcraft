@@ -35,7 +35,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
-@Mod(modid = "redgear_brewcraft", name = "Brewcraft", version = "@ModVersion@", dependencies = "required-after:redgear_core;")
+@Mod(modid = "redgear_brewcraft", name = "Brewcraft", version = "@ModVersion@")
 public class Brewcraft extends ModUtils {
 
 	@Instance("redgear_brewcraft")

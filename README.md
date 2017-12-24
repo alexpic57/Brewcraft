@@ -12,6 +12,6 @@ Not only have we expanded the potion array, we have also created the capability 
 Now, I’m not going to spoil all of the surprises, you’re going to have to try the mod out for yourself! If you must read about everything before you try the mod, please visit our wiki. That can be found [here.](http://www.the-redgear-project.wikia.com/wiki/The_RedGear_Project_Wiki)
 
 ## Installation & Reporting Issues ##
-A prerequisite to this mod is Minecraft Forge. This is required for the mod to run correctly. Aside from this, you will need our core class library, RedGear Core. This is required for the mod to run. Brewcraft and RedGear Core must be inside the mods folder in your .minecraft directory. 
+A prerequisite to this mod is Minecraft Forge. Brewcraft must be inside the mods folder in your .minecraft directory.
 
 

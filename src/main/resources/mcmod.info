@@ -12,6 +12,6 @@
   "authors": [ "Enosphorous", "LordBlackHole"],
   "parent":"",
   "screenshots": [],
-  "dependencies": ["redgear_core"]
+  "dependencies": []
 }
 ]

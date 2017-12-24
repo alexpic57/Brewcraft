@@ -28,7 +28,7 @@ public class PotionPlugin implements IPlugin {
 	public static FluidStack lava = new FluidStack(FluidRegistry.LAVA, 1000);
 	public static PotionRegistry potionRegistry = new PotionRegistry();
 	public static RecipeRegistry recipeRegistry = new RecipeRegistry();
-	public static final String potionTexture = "potionWhite";
+	public static final String potionTexture = "potion_white";
 
 	//Vanilla potions. (and III-level/Very Long for vanilla bases)
 	public static FluidStack fluidAwkward, fluidVision, fluidVisionLong, fluidVisionVeryLong, fluidInvisible,
