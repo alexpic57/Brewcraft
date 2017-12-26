@@ -31,7 +31,6 @@ public class Brewcraft {
 
 	protected void PreInit(FMLPreInitializationEvent event) {
 		/*
-		PotionArrayExpander.init();
 
 		addPlugin(new DamageSourcePlugin());
 		addPlugin(new EffectPlugin());
