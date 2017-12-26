@@ -3,7 +3,7 @@ package redgear.brewcraft.effects;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import redgear.brewcraft.plugins.core.AchievementPlugin;
-import redgear.brewcraft.plugins.core.DamageSourcePlugin;
+import redgear.brewcraft.utils.ModDamageSource;
 
 public class EffectFireEater extends PotionExtension {
 
@@ -18,7 +18,7 @@ public class EffectFireEater extends PotionExtension {
 		if (living.isBurning())
 			living.heal(2 * strength + 1);
 		else
-			living.attackEntityFrom(DamageSourcePlugin.fireEater, 2 * strength + 1);
+			living.attackEntityFrom(ModDamageSource.FIRE_EATER, 2 * strength + 1);
 
 		if (living instanceof EntityPlayer && AchievementPlugin.fireEater != null)
 			((EntityPlayer) living).addStat(AchievementPlugin.fireEater, 1);
