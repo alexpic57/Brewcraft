@@ -23,9 +23,9 @@ public class TradeHandler implements IVillageTradeHandler {
 			for (int i = 0; i < 5; ++i)
 				VillagerRegistry.instance().registerVillageTradeHandler(i, instance);
 			VillagerRegistry.instance().registerVillageTradeHandler(
-					Brewcraft.inst.getInt("General", "Witch Profession ID", 15), instance);
+					Brewcraft.INSTANCE.getInt("General", "Witch Profession ID", 15), instance);
 			VillagerRegistry.instance().registerVillageTradeHandler(
-					Brewcraft.inst.getInt("General", "Warlock Profession ID", 16), instance);
+					Brewcraft.INSTANCE.getInt("General", "Warlock Profession ID", 16), instance);
 
 		}
 		return instance;

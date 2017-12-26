@@ -31,7 +31,7 @@ public class PotionArrayExpander {
 							f.set(null, newPotionTypes);
 						}
 					} catch (Exception e) {
-						Brewcraft.inst.logDebug(e);
+						Brewcraft.INSTANCE.logDebug(e);
 					}
 				}
 	}

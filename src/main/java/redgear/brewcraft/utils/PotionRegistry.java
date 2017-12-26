@@ -76,7 +76,7 @@ public class PotionRegistry implements IPotionRegistry {
 			if (!(item instanceof MetaItemPotion))
 				message.append("Passed Item is NOT a potion bottle! ");
 
-			Brewcraft.inst.myLogger.warn(message.toString());
+			Brewcraft.INSTANCE.myLogger.warn(message.toString());
 			return null;
 		}
 	}
@@ -105,7 +105,7 @@ public class PotionRegistry implements IPotionRegistry {
 			if (!(item instanceof MetaItemPotion))
 				message.append("Passed Item is NOT a potion bottle! ");
 
-			Brewcraft.inst.myLogger.warn(message.toString());
+			Brewcraft.INSTANCE.myLogger.warn(message.toString());
 			return null;
 		}
 

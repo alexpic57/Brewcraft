@@ -15,7 +15,7 @@ public class TileRendererBrewery extends TileEntitySpecialRenderer {
 
 	private final int rotationMap[] = {1, 1, 0, 0};
 	ModelBrewery model = new ModelBrewery();
-	ResourceLocation texture = StringHelper.parseModelTexture(Brewcraft.inst.modId, "brewery");
+	ResourceLocation texture = StringHelper.parseModelTexture(Brewcraft.INSTANCE.modId, "brewery");
 
 	@Override
 	public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float f) {  //I think f is the shadow or something?

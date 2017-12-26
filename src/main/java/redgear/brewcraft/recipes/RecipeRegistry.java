@@ -60,7 +60,7 @@ public class RecipeRegistry implements IRecipeRegistry {
 			if (Brewcraft.configuration.get("Brewery Recipes", "Toggle " + output.getLocalizedName()
 					+ " Recipe", true).getBoolean()) {
 				if (!recipes.add(new BreweryRecipe(resizeStack(input.copy(), amount), output, item)))
-					Brewcraft.inst.myLogger
+					Brewcraft.INSTANCE.myLogger
 							.warn("There were issues trying to add recipe to Brewcraft Brewery block. Issues found are: Recipe already exists. ");
 			}
 		} else { //There is a programming bug that someone needs to fix, so let's throw it as a warning. 
@@ -79,7 +79,7 @@ public class RecipeRegistry implements IRecipeRegistry {
 			if (item == null)
 				message.append("Input item is null. ");
 
-			Brewcraft.inst.myLogger.warn(message.toString());
+			Brewcraft.INSTANCE.myLogger.warn(message.toString());
 		}
 	}
 

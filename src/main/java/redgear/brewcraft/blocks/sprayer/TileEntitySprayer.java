@@ -12,7 +12,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionHelper;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -62,7 +61,7 @@ public class TileEntitySprayer extends TileEntityTank implements IRedstoneCache,
 			double maxZ = zCoord + (direct == ForgeDirection.SOUTH ? 6 : direct == ForgeDirection.NORTH ? -1.0 : 1.5);
 
 
-			Brewcraft.inst.logDebug("Current location: ", loc, ", spraying min: [", minX, ", ", minY, ", ", minZ, "], to max: [", maxX, ", ", maxY, ", ", maxZ, "]");
+			Brewcraft.INSTANCE.logDebug("Current location: ", loc, ", spraying min: [", minX, ", ", minY, ", ", minZ, "], to max: [", maxX, ", ", maxY, ", ", maxZ, "]");
 
 			AxisAlignedBB range = AxisAlignedBB.getBoundingBox(minX, minY, minZ,
 					maxX, maxY, maxZ);

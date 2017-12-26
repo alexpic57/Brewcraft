@@ -79,8 +79,8 @@ public class ParticleHandler {
 
 
 
-//			Brewcraft.inst.logDebug("Starting x: ", velocityX, ", y: ", velocityY, ", z: ", velocityZ);
-//			Brewcraft.inst.logDebug("Final x: ", velocityX, ", y: ", velocityY, ", z: ", velocityZ);
+//			Brewcraft.INSTANCE.logDebug("Starting x: ", velocityX, ", y: ", velocityY, ", z: ", velocityZ);
+//			Brewcraft.INSTANCE.logDebug("Final x: ", velocityX, ", y: ", velocityY, ", z: ", velocityZ);
 
 			EntityFX entityfx = renderGlobal.doSpawnParticle(particleName,
 					message.x + (0.5 * direction.offsetX),

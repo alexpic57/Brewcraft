@@ -15,7 +15,7 @@ import redgear.core.util.StringHelper;
 public class TileRendererSprayer extends TileEntitySpecialRenderer {
 
 	ModelSprayer model = new ModelSprayer();
-	ResourceLocation texture = StringHelper.parseModelTexture(Brewcraft.inst.modId, "sprayer");
+	ResourceLocation texture = StringHelper.parseModelTexture(Brewcraft.INSTANCE.modId, "sprayer");
 
 	@Override
 	public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float f) {

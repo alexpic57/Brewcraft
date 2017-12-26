@@ -25,7 +25,7 @@ public class FluidPotion extends Fluid {
 	public FluidPotion(String fluidName, ItemStack bottle, int duration, int potency) {
 		super(fluidName);
 
-		if (Brewcraft.inst.isClient()) {
+		if (Brewcraft.INSTANCE.isClient()) {
 			String s = bottle.getDisplayName();
 
 			if (potency > 0)
