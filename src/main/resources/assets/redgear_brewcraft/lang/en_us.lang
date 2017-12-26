@@ -61,10 +61,10 @@ container.keg=Keg
 container.bottler=Bottler
 container.unbottler=Unbottler
 
-itemGroup.brewcraft.misc=Brewcraft Misc
-itemGroup.brewcraft.potions=Brewcraft Potions
-itemGroup.brewcraft.vials=Brewcraft Vials
-itemGroup.brewcraft.big=Brewcraft Big Potions
+itemGroup.redgear_brewcraft.misc=Brewcraft Misc
+itemGroup.redgear_brewcraft.vials=Brewcraft Vials
+itemGroup.redgear_brewcraft.potions=Brewcraft Potions
+itemGroup.redgear_brewcraft.big=Brewcraft Big Potions
 
 death.attack.fireEater=%s was consumed by Fire Eaters
 	

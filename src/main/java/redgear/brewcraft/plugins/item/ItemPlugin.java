@@ -4,9 +4,9 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import redgear.brewcraft.core.Brewcraft;
 import redgear.brewcraft.items.ItemHeart;
 import redgear.brewcraft.items.ItemTear;
+import redgear.brewcraft.utils.BrewcraftTab;
 import redgear.core.item.MetaItem;
 import redgear.core.item.SubItem;
 import redgear.core.mod.IPlugin;
@@ -102,8 +102,8 @@ public class ItemPlugin implements IPlugin {
 		heartGold = hearts.addMetaItem(new SubItem("heartgold"));
 		heartBlaze = hearts.addMetaItem(new SubItem("heartblaze"));
 
-		ingredients.setCreativeTab(Brewcraft.tabMisc);
-		misc.setCreativeTab(Brewcraft.tabMisc);
+		ingredients.setCreativeTab(BrewcraftTab.BREWCRAFT);
+		misc.setCreativeTab(BrewcraftTab.BREWCRAFT);
 
 		FluidContainerRegistry.registerFluidContainer(new FluidStack(FluidRegistry.WATER, 250), waterVial.getStack());
 		FluidContainerRegistry.registerFluidContainer(new FluidStack(FluidRegistry.WATER, 1000),

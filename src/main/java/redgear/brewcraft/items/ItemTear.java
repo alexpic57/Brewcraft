@@ -11,8 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import redgear.brewcraft.core.Brewcraft;
 import redgear.brewcraft.plugins.item.ItemPlugin;
+import redgear.brewcraft.utils.BrewcraftTab;
 import redgear.core.item.MetaItem;
 import redgear.core.item.SubItem;
 
@@ -21,7 +21,7 @@ public class ItemTear extends MetaItem<SubItem> {
 	public ItemTear(String name) {
 		super(name);
 		setUnlocalizedName(name);
-		setCreativeTab(Brewcraft.tabMisc);
+		setCreativeTab(BrewcraftTab.BREWCRAFT);
 		setMaxStackSize(8);
 	}
 

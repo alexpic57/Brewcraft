@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import redgear.brewcraft.core.Brewcraft;
+import redgear.brewcraft.utils.BrewcraftTab;
 import redgear.core.item.MetaItem;
 import redgear.core.item.SubItem;
 
@@ -18,7 +18,7 @@ public class ItemHeart extends MetaItem<SubItem> {
 
 	public ItemHeart(String name) {
 		super(name);
-		setCreativeTab(Brewcraft.tabMisc);
+		setCreativeTab(BrewcraftTab.BREWCRAFT);
 	}
 
 	@Override

@@ -61,10 +61,10 @@ container.keg=小桶
 container.bottler=Bottler
 container.unbottler=Unbottler
 
-itemGroup.brewcraft.misc=酿造工艺 | 杂项
-itemGroup.brewcraft.potions=酿造工艺 | 药水
-itemGroup.brewcraft.vials=酿造工艺 | 药瓶
-itemGroup.brewcraft.big=酿造工艺 | 大型药水
+itemGroup.redgear_brewcraft.misc=酿造工艺 | 杂项
+itemGroup.redgear_brewcraft.vials=酿造工艺 | 药瓶
+itemGroup.redgear_brewcraft.potions=酿造工艺 | 药水
+itemGroup.redgear_brewcraft.big=酿造工艺 | 大型药水
 
 death.attack.fireEater=%s 被 火焰吞噬 消耗尽了.
 	

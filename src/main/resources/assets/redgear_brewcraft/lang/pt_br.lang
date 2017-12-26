@@ -62,10 +62,10 @@ container.keg=Barril
 container.bottler=Engarrafador
 container.unbottler=Desengarrafador
 
-itemGroup.brewcraft.misc=Brewcraft: Miscelânias
-itemGroup.brewcraft.potions=Brewcraft: Poções
-itemGroup.brewcraft.vials=Brewcraft: Ampolas
-itemGroup.brewcraft.big=Brewcraft: Poções Grandes
+itemGroup.redgear_brewcraft.misc=Brewcraft: Miscelânias
+itemGroup.redgear_brewcraft.vials=Brewcraft: Ampolas
+itemGroup.redgear_brewcraft.potions=Brewcraft: Poções
+itemGroup.redgear_brewcraft.big=Brewcraft: Poções Grandes
 
 death.attack.fireEater=%s foi consumida por Engolidores de Fogo
 

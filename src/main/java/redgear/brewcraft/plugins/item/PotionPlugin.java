@@ -6,11 +6,11 @@ import net.minecraft.potion.Potion;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import redgear.brewcraft.core.Brewcraft;
 import redgear.brewcraft.plugins.core.EffectPlugin;
 import redgear.brewcraft.potions.FluidPotion;
 import redgear.brewcraft.potions.MetaItemPotion;
 import redgear.brewcraft.recipes.RecipeRegistry;
+import redgear.brewcraft.utils.BrewcraftTab;
 import redgear.brewcraft.utils.PotionRegistry;
 import redgear.core.fluids.FluidUtil;
 import redgear.core.mod.IPlugin;
@@ -83,13 +83,13 @@ public class PotionPlugin implements IPlugin {
 				"redgear_brewcraft:bigoverlay", "redgear_brewcraft:bigsplash");
 
 		potions.setEmptyItems(new ItemStack(Items.glass_bottle, 1, 0), new ItemStack(Items.potionitem, 1, 0));
-		potions.setCreativeTab(Brewcraft.tabPotions);
+		potions.setCreativeTab(BrewcraftTab.POTIONS);
 		vials.setEmptyItems(ItemPlugin.emptyVial.getStack(), ItemPlugin.splashVial.getStack());
 		vials.setFluidCapacity(250);
-		vials.setCreativeTab(Brewcraft.tabVials);
+		vials.setCreativeTab(BrewcraftTab.VIALS);
 		big.setEmptyItems(ItemPlugin.emptyBigBottle.getStack(), ItemPlugin.splashBigBottle.getStack());
 		big.setFluidCapacity(2000);
-		big.setCreativeTab(Brewcraft.tabBig);
+		big.setCreativeTab(BrewcraftTab.BIG_POTIONS);
 	}
 
 	@Override

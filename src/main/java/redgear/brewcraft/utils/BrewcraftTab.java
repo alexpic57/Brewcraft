@@ -1,30 +1,31 @@
 package redgear.brewcraft.utils;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import redgear.brewcraft.core.Brewcraft;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+//ToDo: set the icon item on each tab
 public class BrewcraftTab extends CreativeTabs {
 
-	boolean background;
-	Item display;
+	public static final CreativeTabs BREWCRAFT = new BrewcraftTab("misc"); //brewery icon
+	public static final CreativeTabs VIALS = new BrewcraftTab("vials"); //vial icon
+	public static final CreativeTabs POTIONS = new BrewcraftTab("potions"); //potion icon
+	public static final CreativeTabs BIG_POTIONS = new BrewcraftTab("big_potions"); //big potion icon
 
-	public BrewcraftTab(String name) {
-		super("brewcraft." + name);
+	private boolean background;
+	private ItemStack tabIconItem;
+
+	public BrewcraftTab(String label) {
+		super(Brewcraft.MOD_ID + "." + label);
 		this.background = Brewcraft.configuration.get("General", "Toggle Unconventional Creative Tab Overlays", true).getBoolean();
+		this.tabIconItem = ItemStack.EMPTY;
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public Item getTabIconItem() {
-		return display;
-	}
-	
-	public CreativeTabs setTabIcon(Item item) {
-		display = item;
-		return this;
+	public ItemStack getTabIconItem() {
+		return tabIconItem;
 	}
 
 	@Override
@@ -33,4 +34,8 @@ public class BrewcraftTab extends CreativeTabs {
 		return background ? "background.png" : "items.png";
 	}
 
+	public BrewcraftTab setTabIconItem(ItemStack tabIconItem) {
+		this.tabIconItem = tabIconItem;
+		return this;
+	}
 }

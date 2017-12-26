@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import redgear.brewcraft.core.Brewcraft;
+import redgear.brewcraft.utils.BrewcraftTab;
 import redgear.core.block.MetaTileSpecialRenderer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -19,7 +19,7 @@ public class MetaTileKeg extends MetaTileSpecialRenderer {
 		setHardness(1.0F);
 		setResistance(5.0F);
 		setStepSound(Block.soundTypeWood);
-		setCreativeTab(Brewcraft.tabMisc);
+		setCreativeTab(BrewcraftTab.BREWCRAFT);
 		setHarvestLevel("axe", 0);
 		setBlockBounds(0.125F, 0.0F, 0.125F, 0.875F, 1.0F, 0.875F);
 	}

@@ -6,7 +6,7 @@ import redgear.brewcraft.blocks.bottler.BottlerFactory;
 import redgear.brewcraft.blocks.brewery.BreweryFactory;
 import redgear.brewcraft.blocks.sprayer.SprayerFactory;
 import redgear.brewcraft.blocks.unbottler.UnBottlerFactory;
-import redgear.brewcraft.core.Brewcraft;
+import redgear.brewcraft.utils.BrewcraftTab;
 import redgear.core.block.MetaTile;
 import redgear.core.block.MetaTileSpecialRenderer;
 import redgear.core.block.SubTile;
@@ -48,19 +48,19 @@ public class MachinePlugin implements IPlugin {
 
 		brewing = new MetaTileSpecialRenderer(Material.iron, "RedGear.Brewcraft.Brewery",
 				RenderingRegistry.getNextAvailableRenderId());
-		brewing.setHardness(5.0F).setResistance(10.0F).setStepSound(Block.soundTypeMetal).setCreativeTab(Brewcraft.tabMisc)
+		brewing.setHardness(5.0F).setResistance(10.0F).setStepSound(Block.soundTypeMetal).setCreativeTab(BrewcraftTab.BREWCRAFT)
 				.setHarvestLevel("pickaxe", 0);
 		brewery = brewing.addMetaBlock(new SubTile("brewery", new BreweryFactory()));
 
 		machine = new MetaTileSpecialRenderer(Material.iron, "RedGear.Brewcraft.Machine",
 				RenderingRegistry.getNextAvailableRenderId());
-		machine.setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundTypeMetal).setCreativeTab(Brewcraft.tabMisc)
+		machine.setHardness(2.0F).setResistance(10.0F).setStepSound(Block.soundTypeMetal).setCreativeTab(BrewcraftTab.BREWCRAFT)
 				.setHarvestLevel("pickaxe", 0);
 		sprayer = machine.addMetaBlock(new SubTile("sprayer", new SprayerFactory()));
 		
 		
 		bottlers = new MetaTile(Material.piston, "RedGear.Brewcraft.Bottlers");
-		bottlers.setHardness(5.0F).setResistance(10.0F).setStepSound(Block.soundTypeMetal).setCreativeTab(Brewcraft.tabMisc)
+		bottlers.setHardness(5.0F).setResistance(10.0F).setStepSound(Block.soundTypeMetal).setCreativeTab(BrewcraftTab.BREWCRAFT)
 			.setHarvestLevel("pickaxe", 0);
 		
 		bottler   = bottlers.addMetaBlock(new SubTile("bottler",   new BottlerFactory()));

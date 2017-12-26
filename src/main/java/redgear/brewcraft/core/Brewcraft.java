@@ -1,6 +1,5 @@
 package redgear.brewcraft.core;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -19,11 +18,6 @@ public class Brewcraft {
 	public static Logger logger;
 	public static Configuration configuration;
 
-	public static CreativeTabs tabMisc;
-	public static CreativeTabs tabPotions;
-	public static CreativeTabs tabVials;
-	public static CreativeTabs tabBig;
-
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		logger = event.getModLog();
@@ -38,11 +32,6 @@ public class Brewcraft {
 	protected void PreInit(FMLPreInitializationEvent event) {
 		/*
 		PotionArrayExpander.init();
-		
-		tabMisc = new BrewcraftTab("misc");
-		tabPotions = new BrewcraftTab("potions");
-		tabVials = new BrewcraftTab("vials");
-		tabBig = new BrewcraftTab("big");
 
 		addPlugin(new DamageSourcePlugin());
 		addPlugin(new EffectPlugin());
@@ -75,11 +64,7 @@ public class Brewcraft {
 		SprayerDelayHandler.register();
 		TipHandler.register();
 		UpdateHandler.register();
-		
-		((BrewcraftTab) tabMisc).setTabIcon(MachinePlugin.brewery.getItem());
-		((BrewcraftTab) tabPotions).setTabIcon(new ItemStack(PotionPlugin.potions).getItem());
-		((BrewcraftTab) tabVials).setTabIcon(new ItemStack(PotionPlugin.vials).getItem());
-		((BrewcraftTab) tabBig).setTabIcon(new ItemStack(PotionPlugin.big).getItem());
+
 		*/
 	}
 }
