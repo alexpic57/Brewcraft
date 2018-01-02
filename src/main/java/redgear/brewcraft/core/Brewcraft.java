@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import redgear.brewcraft.plugins.world.ModVillageRegistry;
 
 @Mod(modid = Brewcraft.MOD_ID, name = "Brewcraft", version = "@ModVersion@")
 public class Brewcraft {
@@ -22,6 +23,8 @@ public class Brewcraft {
 	public void preInit(FMLPreInitializationEvent event) {
 		logger = event.getModLog();
 		configuration = new Configuration(event.getSuggestedConfigurationFile());
+
+		ModVillageRegistry.init();
 	}
 
 	@Mod.EventHandler
@@ -31,7 +34,6 @@ public class Brewcraft {
 
 	protected void PreInit(FMLPreInitializationEvent event) {
 		/*
-
 		addPlugin(new EffectPlugin());
 		addPlugin(new ItemPlugin());
 		addPlugin(new PotionPlugin());
@@ -39,7 +41,6 @@ public class Brewcraft {
 		addPlugin(new KegPlugin());
 		addPlugin(new AchievementPlugin());
 		addPlugin(new CraftingPlugin());
-		addPlugin(new VillagePlugin());
 		if(isClient())
 			addPlugin(new BrewcraftClientProxy());
 
@@ -57,12 +58,10 @@ public class Brewcraft {
 		CraftingHandler.register();
 		DamageHandler.register();
 		DropHandler.register();
-		TradeHandler.register();
 		ParticleHandler.register();
 		SprayerDelayHandler.register();
 		TipHandler.register();
 		UpdateHandler.register();
-
 		*/
 	}
 }

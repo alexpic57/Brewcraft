@@ -3,17 +3,23 @@ package redgear.brewcraft.village;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.BlockFlowerPot;
+import net.minecraft.block.BlockSlab;
+import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureVillagePieces;
-import net.minecraft.world.gen.structure.StructureVillagePieces.Start;
+import net.minecraft.world.gen.structure.template.TemplateManager;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import redgear.brewcraft.core.Brewcraft;
 
 public class ComponentWitchHut extends StructureVillagePieces.House1 {
-
 	public boolean hasCauldron;
 	public boolean hasTable;
 	public boolean hasFlowerPot;
@@ -25,139 +31,135 @@ public class ComponentWitchHut extends StructureVillagePieces.House1 {
 	public ComponentWitchHut() {
 	}
 
-	@Override
-	protected void func_143012_a(NBTTagCompound par1NBTTagCompound) {
-		super.func_143012_a(par1NBTTagCompound);
-		par1NBTTagCompound.setBoolean("Cauldron", this.hasCauldron);
-		par1NBTTagCompound.setBoolean("Crafting Table", this.hasTable);
-		par1NBTTagCompound.setBoolean("Flower Pots", this.hasFlowerPot);
-		par1NBTTagCompound.setBoolean("Fences", this.hasFences);
-		par1NBTTagCompound.setBoolean("Desert", this.isInDesert);
-		par1NBTTagCompound.setBoolean("Glass", this.hasGlass);
-		par1NBTTagCompound.setBoolean("Witch", this.hasWitch);
+	public ComponentWitchHut(StructureVillagePieces.Start start, int type, Random rand, StructureBoundingBox p_i45571_4_, EnumFacing facing) {
+		super(start, type, rand, p_i45571_4_, facing);
+		this.setCoordBaseMode(facing);
+		this.boundingBox = p_i45571_4_;
+		this.hasCauldron = rand.nextBoolean();
+		this.hasTable = rand.nextBoolean();
+		this.hasFlowerPot = rand.nextBoolean();
+		this.hasFences = rand.nextBoolean();
+		this.isInDesert = start.biome == Biomes.DESERT || start.biome == Biomes.DESERT_HILLS; // || start.biome == Biomes.MUTATED_DESERT ?
+		this.hasGlass = rand.nextBoolean() && !this.hasFlowerPot;
+		this.hasWitch = rand.nextBoolean();
+	}
+
+	public static ComponentWitchHut buildComponent(StructureVillagePieces.PieceWeight villagePiece, StructureVillagePieces.Start startPiece, List<StructureComponent> pieces, Random random, int p1, int p2, int p3, EnumFacing facing, int p5) {
+		StructureBoundingBox sbb = StructureBoundingBox.getComponentToAddBoundingBox(p1, p2, p3, 0, 0, 0, 7, 5, 9, facing);
+		return canVillageGoDeeper(sbb) && StructureComponent.findIntersecting(pieces, sbb) == null ? new ComponentWitchHut(startPiece, p5, random, sbb, facing) : null;
 	}
 
 	@Override
-	protected void func_143011_b(NBTTagCompound par1NBTTagCompound) {
-		super.func_143011_b(par1NBTTagCompound);
-		this.hasCauldron = par1NBTTagCompound.getBoolean("Cauldron");
-		this.hasTable = par1NBTTagCompound.getBoolean("Crafting Table");
-		this.hasFlowerPot = par1NBTTagCompound.getBoolean("Flower Pots");
-		this.hasFences = par1NBTTagCompound.getBoolean("Fences");
-		this.isInDesert = par1NBTTagCompound.getBoolean("Desert");
-		this.hasGlass = par1NBTTagCompound.getBoolean("Glass");
-		this.hasWitch = par1NBTTagCompound.getBoolean("Witch");
-	}
+	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
 
-	public ComponentWitchHut(StructureVillagePieces.Start par1ComponentVillageStartPiece, int par2, Random par3Random,
-			StructureBoundingBox par4StructureBoundingBox, int par5) {
-		super(par1ComponentVillageStartPiece, par2, par3Random, par4StructureBoundingBox, par5);
-		this.coordBaseMode = par5;
-		this.boundingBox = par4StructureBoundingBox;
-		this.hasCauldron = par3Random.nextBoolean();
-		this.hasTable = par3Random.nextBoolean();
-		this.hasFlowerPot = par3Random.nextBoolean();
-		this.hasFences = par3Random.nextBoolean();
-		this.isInDesert = par1ComponentVillageStartPiece.inDesert;
-		this.hasGlass = par3Random.nextBoolean() && !this.hasFlowerPot;
-		this.hasWitch = par3Random.nextBoolean();
-	}
+		if (this.averageGroundLvl < 0) {
+			this.averageGroundLvl = this.getAverageGroundLevel(worldIn, structureBoundingBoxIn);
 
-	@SuppressWarnings("rawtypes")
-	public static ComponentWitchHut buildComponent(Start start, List list, Random rand, int p3, int p4, int p5, int p6,
-			int p7) {
-		StructureBoundingBox sbb = StructureBoundingBox.getComponentToAddBoundingBox(p3, p4, p5, 0, 0, 0, 7, 5, 9, p6);
-		return canVillageGoDeeper(sbb) && StructureComponent.findIntersecting(list, sbb) == null ? new ComponentWitchHut(
-				start, p7, rand, sbb, p6) : null;
-	}
-
-	@Override
-	public boolean addComponentParts(World w, Random par2Random, StructureBoundingBox sbb) {
-
-		if (this.field_143015_k < 0) {
-			this.field_143015_k = this.getAverageGroundLevel(w, sbb);
-
-			if (this.field_143015_k < 0) {
+			if (this.averageGroundLvl < 0) {
 				return true;
 			}
 
-			this.boundingBox.offset(0, this.field_143015_k - this.boundingBox.maxY + 4, 0);
+			this.boundingBox.offset(0, this.averageGroundLvl - this.boundingBox.maxY + 4, 0);
 		}
 
 		//The walls, floor, posts that hold it upright.
-		this.fillWithBlocks(w, sbb, 1, 1, 1, 5, 1, 7, Blocks.planks, Blocks.planks, false);
-		this.fillWithBlocks(w, sbb, 1, 4, 2, 5, 4, 7, Blocks.planks, Blocks.planks, false);
-		this.fillWithBlocks(w, sbb, 2, 1, 0, 4, 1, 0, Blocks.planks, Blocks.planks, false);
-		this.fillWithBlocks(w, sbb, 2, 2, 2, 3, 3, 2, Blocks.planks, Blocks.planks, false);
-		this.fillWithBlocks(w, sbb, 1, 2, 3, 1, 3, 6, Blocks.planks, Blocks.planks, false);
-		this.fillWithBlocks(w, sbb, 5, 2, 3, 5, 3, 6, Blocks.planks, Blocks.planks, false);
-		this.fillWithBlocks(w, sbb, 2, 2, 7, 4, 3, 7, Blocks.planks, Blocks.planks, false);
-		this.fillWithBlocks(w, sbb, 1, 0, 2, 1, 3, 2, Blocks.log, Blocks.log, false);
-		this.fillWithBlocks(w, sbb, 5, 0, 2, 5, 3, 2, Blocks.log, Blocks.log, false);
-		this.fillWithBlocks(w, sbb, 1, 0, 7, 1, 3, 7, Blocks.log, Blocks.log, false);
-		this.fillWithBlocks(w, sbb, 5, 0, 7, 5, 3, 7, Blocks.log, Blocks.log, false);
+		this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 1, 1, 5, 1, 7, Blocks.PLANKS.getDefaultState(), Blocks.PLANKS.getDefaultState(), false);
+		this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 4, 2, 5, 4, 7, Blocks.PLANKS.getDefaultState(), Blocks.PLANKS.getDefaultState(), false);
+		this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 1, 0, 4, 1, 0, Blocks.PLANKS.getDefaultState(), Blocks.PLANKS.getDefaultState(), false);
+		this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 2, 2, 3, 3, 2, Blocks.PLANKS.getDefaultState(), Blocks.PLANKS.getDefaultState(), false);
+		this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 2, 3, 1, 3, 6, Blocks.PLANKS.getDefaultState(), Blocks.PLANKS.getDefaultState(), false);
+		this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 2, 3, 5, 3, 6, Blocks.PLANKS.getDefaultState(), Blocks.PLANKS.getDefaultState(), false);
+		this.fillWithBlocks(worldIn, structureBoundingBoxIn, 2, 2, 7, 4, 3, 7, Blocks.PLANKS.getDefaultState(), Blocks.PLANKS.getDefaultState(), false);
+		this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 0, 2, 1, 3, 2, Blocks.LOG.getDefaultState(), Blocks.LOG.getDefaultState(), false);
+		this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 0, 2, 5, 3, 2, Blocks.LOG.getDefaultState(), Blocks.LOG.getDefaultState(), false);
+		this.fillWithBlocks(worldIn, structureBoundingBoxIn, 1, 0, 7, 1, 3, 7, Blocks.LOG.getDefaultState(), Blocks.LOG.getDefaultState(), false);
+		this.fillWithBlocks(worldIn, structureBoundingBoxIn, 5, 0, 7, 5, 3, 7, Blocks.LOG.getDefaultState(), Blocks.LOG.getDefaultState(), false);
 
 		//Rails on front of house and in the windows.
 		if (this.hasFences) {
-			this.placeBlockAtCurrentPosition(w, Blocks.fence, 0, 2, 3, 2, sbb);
-			this.placeBlockAtCurrentPosition(w, Blocks.fence, 0, 3, 3, 7, sbb);
-			this.placeBlockAtCurrentPosition(w, Blocks.fence, 0, 1, 2, 1, sbb);
-			this.placeBlockAtCurrentPosition(w, Blocks.fence, 0, 5, 2, 1, sbb);
+			this.setBlockState(worldIn, Blocks.OAK_FENCE.getDefaultState(), 2, 3, 2, structureBoundingBoxIn);
+			this.setBlockState(worldIn, Blocks.OAK_FENCE.getDefaultState(), 3, 3, 7, structureBoundingBoxIn);
+			this.setBlockState(worldIn, Blocks.OAK_FENCE.getDefaultState(), 1, 2, 1, structureBoundingBoxIn);
+			this.setBlockState(worldIn, Blocks.OAK_FENCE.getDefaultState(), 5, 2, 1, structureBoundingBoxIn);
 		}
 
 		if (this.hasFlowerPot)
-			this.placeBlockAtCurrentPosition(w, Blocks.flower_pot, 7, 1, 3, 5, sbb);
+			this.setBlockState(worldIn, Blocks.FLOWER_POT.getDefaultState().withProperty(BlockFlowerPot.CONTENTS, BlockFlowerPot.EnumFlowerType.MUSHROOM_RED), 1, 3, 5, structureBoundingBoxIn);
 
 		if (this.hasGlass) {
-			this.placeBlockAtCurrentPosition(w, Blocks.glass_pane, 0, 2, 3, 2, sbb);
-			this.placeBlockAtCurrentPosition(w, Blocks.glass_pane, 0, 3, 3, 7, sbb);
-			this.placeBlockAtCurrentPosition(w, Blocks.glass_pane, 0, 1, 3, 4, sbb);
-			this.placeBlockAtCurrentPosition(w, Blocks.glass_pane, 0, 5, 3, 4, sbb);
-			this.placeBlockAtCurrentPosition(w, Blocks.glass_pane, 0, 5, 3, 5, sbb);
-			this.placeBlockAtCurrentPosition(w, Blocks.glass_pane, 7, 1, 3, 5, sbb);
+			this.setBlockState(worldIn, Blocks.GLASS_PANE.getDefaultState(), 2, 3, 2, structureBoundingBoxIn);
+			this.setBlockState(worldIn, Blocks.GLASS_PANE.getDefaultState(), 3, 3, 7, structureBoundingBoxIn);
+			this.setBlockState(worldIn, Blocks.GLASS_PANE.getDefaultState(), 1, 3, 4, structureBoundingBoxIn);
+			this.setBlockState(worldIn, Blocks.GLASS_PANE.getDefaultState(), 5, 3, 4, structureBoundingBoxIn);
+			this.setBlockState(worldIn, Blocks.GLASS_PANE.getDefaultState(), 5, 3, 5, structureBoundingBoxIn);
+			this.setBlockState(worldIn, Blocks.GLASS_PANE.getDefaultState(), 1, 3, 5, structureBoundingBoxIn);
 		}
 
 		//Creating holes for the windows.
 		if (!this.hasGlass) {
-			this.placeBlockAtCurrentPosition(w, Blocks.air, 0, 1, 3, 4, sbb);
-			this.placeBlockAtCurrentPosition(w, Blocks.air, 0, 5, 3, 4, sbb);
-			this.placeBlockAtCurrentPosition(w, Blocks.air, 0, 5, 3, 5, sbb);
+			this.setBlockState(worldIn, Blocks.AIR.getDefaultState(), 1, 3, 4, structureBoundingBoxIn);
+			this.setBlockState(worldIn, Blocks.AIR.getDefaultState(), 5, 3, 4, structureBoundingBoxIn);
+			this.setBlockState(worldIn, Blocks.AIR.getDefaultState(), 5, 3, 5, structureBoundingBoxIn);
 		}
 
 		//Miscellaneous things that are randomly included/excluded.
 		if (this.hasTable)
-			this.placeBlockAtCurrentPosition(w, Blocks.crafting_table, 0, 3, 2, 6, sbb);
+			this.setBlockState(worldIn, Blocks.CRAFTING_TABLE.getDefaultState(), 3, 2, 6, structureBoundingBoxIn);
 
 		if (this.hasCauldron)
-			this.placeBlockAtCurrentPosition(w, Blocks.cauldron, 0, 4, 2, 6, sbb);
+			this.setBlockState(worldIn, Blocks.CAULDRON.getDefaultState(), 4, 2, 6, structureBoundingBoxIn);
 
 		if (!this.isInDesert) {
-			this.fillWithBlocks(w, sbb, 0, 4, 1, 6, 4, 1, Blocks.wooden_slab, Blocks.wooden_slab, false);
-			this.fillWithBlocks(w, sbb, 0, 4, 2, 0, 4, 7, Blocks.wooden_slab, Blocks.wooden_slab, false);
-			this.fillWithBlocks(w, sbb, 6, 4, 2, 6, 4, 7, Blocks.wooden_slab, Blocks.wooden_slab, false);
-			this.fillWithBlocks(w, sbb, 0, 4, 8, 6, 4, 8, Blocks.wooden_slab, Blocks.wooden_slab, false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 4, 1, 6, 4, 1, Blocks.WOODEN_SLAB.getDefaultState(), Blocks.WOODEN_SLAB.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 4, 2, 0, 4, 7, Blocks.WOODEN_SLAB.getDefaultState(), Blocks.WOODEN_SLAB.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 4, 2, 6, 4, 7, Blocks.WOODEN_SLAB.getDefaultState(), Blocks.WOODEN_SLAB.getDefaultState(), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 4, 8, 6, 4, 8, Blocks.WOODEN_SLAB.getDefaultState(), Blocks.WOODEN_SLAB.getDefaultState(), false);
 		} else {
-			this.fillWithMetadataBlocks(w, sbb, 0, 4, 1, 6, 4, 1, Blocks.stone_slab, 1, Blocks.stone_slab, 1, false);
-			this.fillWithMetadataBlocks(w, sbb, 0, 4, 2, 0, 4, 7, Blocks.stone_slab, 1, Blocks.stone_slab, 1, false);
-			this.fillWithMetadataBlocks(w, sbb, 6, 4, 2, 6, 4, 7, Blocks.stone_slab, 1, Blocks.stone_slab, 1, false);
-			this.fillWithMetadataBlocks(w, sbb, 0, 4, 8, 6, 4, 8, Blocks.stone_slab, 1, Blocks.stone_slab, 1, false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 4, 1, 6, 4, 1, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM), Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 4, 2, 0, 4, 7, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM), Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 6, 4, 2, 6, 4, 7, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM), Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM), false);
+			this.fillWithBlocks(worldIn, structureBoundingBoxIn, 0, 4, 8, 6, 4, 8, Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM), Blocks.STONE_SLAB.getDefaultState().withProperty(BlockSlab.HALF, BlockSlab.EnumBlockHalf.BOTTOM), false);
 		}
+
 		int i1;
 		int j1;
 
 		for (i1 = 2; i1 <= 7; i1 += 5) {
 			for (j1 = 1; j1 <= 5; j1 += 4) {
-				this.func_151554_b(w, Blocks.log, 0, j1, -1, i1, sbb);
+				this.replaceAirAndLiquidDownwards(worldIn, Blocks.LOG.getDefaultState(), j1, -1, i1, structureBoundingBoxIn);
 			}
 		}
 
-		this.spawnVillagers(w, sbb, 3, 1, 3, 1);
+		this.spawnVillagers(worldIn, structureBoundingBoxIn, 3, 1, 3, 1);
 		return true;
 	}
 
 	@Override
-	protected int getVillagerType(int par1) {
-		return this.hasWitch ? Brewcraft.configuration.get("General", "Witch Profession ID", 15).getInt() : Brewcraft.configuration.get(
-				"General", "Warlock Profession ID", 16).getInt();
+	protected int chooseProfession(int villagersSpawnedIn, int currentVillagerProfession) {
+		return this.hasWitch ? VillagerRegistry.getId(ForgeRegistries.VILLAGER_PROFESSIONS.getValue(new ResourceLocation(Brewcraft.MOD_ID + ":witch"))) : VillagerRegistry.getId(ForgeRegistries.VILLAGER_PROFESSIONS.getValue(new ResourceLocation(Brewcraft.MOD_ID + ":warlock")));
+	}
+
+	@Override
+	protected void writeStructureToNBT(NBTTagCompound tagCompound) {
+		super.writeStructureToNBT(tagCompound);
+		tagCompound.setBoolean("Cauldron", this.hasCauldron);
+		tagCompound.setBoolean("Crafting Table", this.hasTable);
+		tagCompound.setBoolean("Flower Pots", this.hasFlowerPot);
+		tagCompound.setBoolean("Fences", this.hasFences);
+		tagCompound.setBoolean("Desert", this.isInDesert);
+		tagCompound.setBoolean("Glass", this.hasGlass);
+		tagCompound.setBoolean("Witch", this.hasWitch);
+	}
+
+	@Override
+	protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_) {
+		super.readStructureFromNBT(tagCompound, p_143011_2_);
+		this.hasCauldron = tagCompound.getBoolean("Cauldron");
+		this.hasTable = tagCompound.getBoolean("Crafting Table");
+		this.hasFlowerPot = tagCompound.getBoolean("Flower Pots");
+		this.hasFences = tagCompound.getBoolean("Fences");
+		this.isInDesert = tagCompound.getBoolean("Desert");
+		this.hasGlass = tagCompound.getBoolean("Glass");
+		this.hasWitch = tagCompound.getBoolean("Witch");
 	}
 }
