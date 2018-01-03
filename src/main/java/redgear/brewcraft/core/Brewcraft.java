@@ -1,5 +1,6 @@
 package redgear.brewcraft.core;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -7,6 +8,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import redgear.brewcraft.plugins.compat.CustomTableLoot;
 import redgear.brewcraft.plugins.world.ModVillageRegistry;
 
 @Mod(modid = Brewcraft.MOD_ID, name = "Brewcraft", version = "@ModVersion@")
@@ -25,6 +27,7 @@ public class Brewcraft {
 		configuration = new Configuration(event.getSuggestedConfigurationFile());
 
 		ModVillageRegistry.init();
+		MinecraftForge.EVENT_BUS.register(new CustomTableLoot());
 	}
 
 	@Mod.EventHandler
@@ -46,7 +49,6 @@ public class Brewcraft {
 
 		addPlugin(new ForestryPlugin());
 		addPlugin(new BuildcraftPlugin());
-		addPlugin(new VanillaPlugin());
 
 		EntityRegistry.registerModEntity(EntityBrewcraftPotion.class, "Brewcraft:Potion",
 				EntityRegistry.findGlobalUniqueEntityId(), RedGearCore.inst, 128, 10, true);
