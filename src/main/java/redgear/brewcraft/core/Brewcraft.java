@@ -37,7 +37,6 @@ public class Brewcraft {
 
 	protected void PreInit(FMLPreInitializationEvent event) {
 		/*
-		addPlugin(new EffectPlugin());
 		addPlugin(new ItemPlugin());
 		addPlugin(new PotionPlugin());
 		addPlugin(new MachinePlugin());

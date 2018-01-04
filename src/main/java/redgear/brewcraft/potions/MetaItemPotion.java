@@ -13,7 +13,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import redgear.brewcraft.entity.EntityBrewcraftPotion;
-import redgear.brewcraft.plugins.core.EffectPlugin;
+import redgear.brewcraft.utils.ModMobEffects;
 import redgear.core.item.MetaItem;
 import redgear.core.util.SimpleItem;
 import cpw.mods.fml.relauncher.Side;
@@ -127,7 +127,7 @@ public class MetaItemPotion extends MetaItem<SubItemPotion> {
 					+ StatCollector.translateToLocal("tooltip.brewcraft." + potion.getEffect().getName()
 							+ potion.strength));
 		}
-		if (potion.potionId == EffectPlugin.angel.id) {
+		if (potion.potionId == ModMobEffects.ANGEL.id) {
 			par3List.add(EnumChatFormatting.BLUE
 					+ StatCollector.translateToLocal("tooltip.brewcraft." + potion.getEffect().getName() + ".desc2"));
 			par3List.add(EnumChatFormatting.BLUE

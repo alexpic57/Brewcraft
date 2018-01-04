@@ -2,13 +2,15 @@ package redgear.brewcraft.effects;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import redgear.brewcraft.core.Brewcraft;
 import redgear.brewcraft.plugins.core.AchievementPlugin;
 
 public class EffectFlight extends PotionExtension {
 
-	public EffectFlight(int id) {
-		super("flight", id, false, 0xFFFFFF);
+	public EffectFlight() {
+		super("flight", false, 0xFFFFFF);
 		setIconIndex(2, 0);
+		setRegistryName(Brewcraft.MOD_ID, "flight");
 	}
 
 	@Override
@@ -24,7 +26,7 @@ public class EffectFlight extends PotionExtension {
 				}
 			} else
 				player.capabilities.allowFlying = true;
-			if (!player.worldObj.isRemote)
+			if (!player.world.isRemote)
 				player.sendPlayerAbilities();
 			if (AchievementPlugin.flight != null)
 				player.addStat(AchievementPlugin.flight, 1);

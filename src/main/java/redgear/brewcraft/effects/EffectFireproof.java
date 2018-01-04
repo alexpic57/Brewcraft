@@ -2,13 +2,15 @@ package redgear.brewcraft.effects;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import redgear.brewcraft.core.Brewcraft;
 import redgear.brewcraft.plugins.core.AchievementPlugin;
 
 public class EffectFireproof extends PotionExtension {
 
-	public EffectFireproof(int id) {
-		super("fireproof", id, false, 0xCC0000);
+	public EffectFireproof() {
+		super("fireproof", false, 0xCC0000);
 		setIconIndex(5, 0);
+		setRegistryName(Brewcraft.MOD_ID, "fireproof");
 
 	}
 

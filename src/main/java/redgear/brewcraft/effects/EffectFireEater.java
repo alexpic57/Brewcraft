@@ -2,14 +2,16 @@ package redgear.brewcraft.effects;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import redgear.brewcraft.core.Brewcraft;
 import redgear.brewcraft.plugins.core.AchievementPlugin;
 import redgear.brewcraft.utils.ModDamageSource;
 
 public class EffectFireEater extends PotionExtension {
 
-	public EffectFireEater(int id) {
-		super("fireEater", id, false, 0x660000);
+	public EffectFireEater() {
+		super("fire_eater", false, 0x660000);
 		setIconIndex(6, 0);
+		setRegistryName(Brewcraft.MOD_ID, "fire_eater");
 	}
 
 	@Override
